@@ -1,7 +1,9 @@
 #!/bin/bash
 
+scriptDir=$(dirname -- "$(readlink -f -- "$BASH_SOURCE")")
+
 #running meteoserver
-php ../src/server.php >> /tmp/meteoServer.log 2>&1 &
+php $scriptDir/../src/server.php >> /tmp/meteoServer.log 2>&1 &
 
 #wailt for port opening
 sleep 1
