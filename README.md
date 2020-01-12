@@ -6,6 +6,8 @@ How to use
 * install/build [rtl_433](https://github.com/merbanan/rtl_433/)
 * clone repo
 * composer install
+* rtl_433 needs to be restarted sometimes
+ `cp ./etc/meteoServer /etc/cron.d/meteoServer`
 * ./bin/startup.sh
 
 
