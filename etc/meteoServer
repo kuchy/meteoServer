@@ -1,0 +1,2 @@
+0 * * * * root /bin/bash /home/homeserver/scripts/meteoServer/bin/restart.sh >> /tmp/meteoServer.log 2>&1
+

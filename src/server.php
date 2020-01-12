@@ -45,7 +45,7 @@ class Chat implements MessageComponentInterface
   public function onOpen(ConnectionInterface $conn)
   {
     $this->clients->attach($conn);
-    echo "New connection! ({$conn->resourceId})\n";
+    echo (new DateTime())->format('Y-m-d H:i:s')." New connection! ({$conn->resourceId})\n";
   }
 
   public function onMessage(ConnectionInterface $from, $msg)
@@ -64,10 +64,10 @@ class Chat implements MessageComponentInterface
         $decoded['humidity'] ?? null,
         $this->fullMessage
       ]);
-	    echo "value uploaded \n";
+	    echo (new DateTime())->format('Y-m-d H:i:s')."value uploaded \n";
 
       if (isset($decoded['humidity']) && isset($decoded['temperature_C'])){
-      	echo "sending to wunderground...";
+      	echo (new DateTime())->format('Y-m-d H:i:s')." sending to wunderground...";
       	// convert c to f
 	      $f = ($decoded['temperature_C'] * 9/5) + 32;
       	$url = 'https://weatherstation.wunderground.com/weatherstation/updateweatherstation.php?ID='.$this->wundergroundConfig['id'].'&PASSWORD='.$this->wundergroundConfig['password'].'&dateutc=now&humidity='.$decoded['humidity'].'&action=updateraw&tempf='.$f;
@@ -95,12 +95,12 @@ class Chat implements MessageComponentInterface
   {
     $this->clients->detach($conn);
 
-    echo "Connection {$conn->resourceId} has disconnected\n";
+    echo (new DateTime())->format('Y-m-d H:i:s')." Connection {$conn->resourceId} has disconnected\n";
   }
 
   public function onError(ConnectionInterface $conn, \Exception $e)
   {
-    echo "An error has occurred: {$e->getMessage()}\n";
+    echo (new DateTime())->format('Y-m-d H:i:s')." An error has occurred: {$e->getMessage()}\n";
 
     $conn->close();
   }
